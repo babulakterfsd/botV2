@@ -5,7 +5,6 @@ import Dashboard from '../../pages/Dashboard';
 import Home from '../../pages/Home';
 import Login from '../../pages/Login';
 import NotFound from '../../pages/NotFound';
-import Register from '../../pages/Register';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 
 function AllRoutes() {
@@ -23,7 +22,7 @@ function AllRoutes() {
                 />
                 <Route path="/login" element={<Login />} />
                 <Route path="/login2" element={<CustomLoginTest />} />
-                <Route path="/register" element={<Register />} />
+                {/* <Route path="/register" element={<Register />} /> */}
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </div>

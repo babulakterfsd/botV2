@@ -6,7 +6,7 @@ function CustomLoginTest() {
     const [username, setUsername] = useState('Matinatorv2');
     const [password, setPassword] = useState('password');
     const [myUser, setMyuser] = useState({});
-    const url = `https://pipesai.mpact-labs.com/login`;
+    const url = `http://54.75.119.70:8080/`;
 
     const HandleCustomLogin = (e) => {
         e.preventDefault();
