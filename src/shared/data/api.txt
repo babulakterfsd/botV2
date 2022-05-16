@@ -1,0 +1,51 @@
+LOGIN
+## login
+curl -X "POST" "https://pipesai.mpact-labs.com/login" \
+     -H 'Content-Type: application/json; charset=utf-8' \
+     -d $'{
+  "username": "Matinatorv2",
+  "password": "password"
+}'
+
+If user enters the right username it will return a bot object, every bot object looks like this:
+{
+  "_id": {
+    "$oid": "624ac1700159dde49a7e53c7"
+  },
+  "api_key": "5ya3yh8FS33H3jZldf3zpX7qf12nAcs3gITVps8R",
+  "api_secret": "Jw2zFuVAlPOcuqyUiKj7SU8B0FA6IPNMAoG10yH4",
+  "buy_sell": "buy",
+  "coin": "KIN-PERP",
+  "is_enabled": true,
+  "leverage": 7.7,
+  "subaccount_name": false,
+  "type_bot": "premium",
+  "user_id": "Matinatorv2",
+  "uuid": "624ac1700159dde49a7e53c7"
+}
+
+
+To get object by user_id:
+
+## get 1 bot by user_id
+curl "https://pipesai.mpact-labs.com/get_bot_by_user_id?user_id=mathias_andries"
+Returns the bot object
+
+To update a bot you have to get the uuid of that bot (it's in the bot object)
+
+## update_bot (full)
+curl -X "POST" "https://pipesai.mpact-labs.com/update_bot_full" \
+     -H 'Content-Type: application/json; charset=utf-8' \
+     -d $'{
+  "is_enabled": false,
+  "api_secret": "Jw2zFuVAlPOcuqyUiKj7SU8B0FA6IPNMAoG10yH4",
+  "coin": "KIN-PERP",
+  "uuid": "624ac1700159dde49a7e53c7",
+  "leverage": 4,
+  "subaccount_name": false,
+  "api_key": "5ya3yh8FS33H3jZldf3zpX7qf12nAcs3gITVps8R",
+  "buy_sell": "buy"
+}'
+
+Not all fields are mandatory, if you leave one field out it will take the old value
+When updated successfully it will return the new bot object, otherwise will give you an error message

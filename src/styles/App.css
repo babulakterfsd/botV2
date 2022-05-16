@@ -1,0 +1,60 @@
+.primary-btn {
+  background-color: #5725e5 !important;
+  box-shadow: 0px 22.4066px 30.3008px rgba(27, 27, 27, 0.25),
+    inset 0px 0px 8.7406px rgba(255, 255, 255, 0.52);
+  border-radius: 50px;
+  color: #fff;
+  @apply px-6 py-1 sm:px-6 sm:py-3 lg:px-10 font-semibold transition-all;
+}
+
+.primary-btn:hover {
+  background: #17054a !important;
+}
+
+.dashboard-primary-btn {
+  background: linear-gradient(
+      306.64deg,
+      rgba(255, 41, 105, 0.65) 27.07%,
+      rgba(247, 122, 28, 0.65) 71.29%
+    ),
+    #ff9a3d !important;
+  box-shadow: 0px 22.4066px 30.3008px rgba(27, 27, 27, 0.25),
+    inset 0px 0px 8.7406px rgba(255, 255, 255, 0.52);
+  border-radius: 50px;
+  color: #fff;
+  @apply px-12 py-2 font-semibold text-sm sm:text-xl transition-all;
+}
+.dashboard-primary-btn-sm {
+  background: linear-gradient(
+      306.64deg,
+      rgba(255, 41, 105, 0.65) 27.07%,
+      rgba(247, 122, 28, 0.65) 71.29%
+    ),
+    #ff9a3d !important;
+  box-shadow: 0px 22.4066px 30.3008px rgba(27, 27, 27, 0.25),
+    inset 0px 0px 8.7406px rgba(255, 255, 255, 0.52);
+  border-radius: 50px;
+  color: #fff;
+  @apply px-6 py-1.5 font-semibold transition-all;
+}
+
+.dashboard-primary-btn:hover {
+  background: linear-gradient(
+      306.64deg,
+      rgba(247, 122, 28, 0.65) 27.07% rgba(255, 41, 105, 0.65) 71.29%
+    ),
+    #ff9a3d !important;
+}
+
+.secondary-btn {
+  background-color: #d4382b !important;
+  box-shadow: 0px 22.4066px 30.3008px rgba(27, 27, 27, 0.25),
+    inset 0px 0px 8.7406px rgba(255, 255, 255, 0.52);
+  border-radius: 50px;
+  color: #fff;
+  @apply px-6 py-1 sm:px-6 sm:py-3 lg:px-10 font-semibold transition-all;
+}
+
+.secondary-btn:hover {
+  background: #2e0603 !important;
+}

@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* imported fonts will be placed right below */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+}
+
+@layer components {
+}
+
+@layer utilities {
+}
+
+/* to add variants like hover, focus or such things on our custom classes, we must keep them in the specific variant, either it won't work */
+
+@variants focus, hover {
+}
+
+/* ----------- for high customized responsiveness ------------ */
+.main-container {
+    @apply w-full mx-auto;
+}
+@media (min-width: 576px) {
+    .main-container {
+        max-width: 540px !important;
+    }
+}
+@media (min-width: 768px) {
+    .main-container {
+        max-width: 720px !important;
+    }
+}
+@media (min-width: 992px) {
+    .main-container {
+        max-width: 970px !important;
+    }
+}
+@media (min-width: 1200px) {
+    .main-container {
+        max-width: 1170px !important;
+    }
+    .userImg {
+        display: block;
+    }
+}
+@media (min-width: 1400px) {
+    .main-container {
+        max-width: 1320px !important;
+    }
+}
+
+/* ------------ custom css if needed -------------- */
+body {
+    scroll-behavior: smooth;
+    @apply font-body text-white;
+    background-image: url('../src/assets/images/bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow-x: hidden !important;
+    background-position: center;
+    /* linear-gradient(
+            rgba(82, 79, 79, 0.247),
+            rgba(48, 28, 28, 0.63)
+        ), */
+}
+.react-tabs__tab--selected {
+    background: #1b1423;
+    color: #fff;
+    border-radius: 5px;
+}
+.react-tabs__tab-list {
+    border-bottom: 1px solid #aaaaaa29 !important;
+}
+/* chrome scrollbar  */
+::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    background: transparent;
+}
