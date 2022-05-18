@@ -3,94 +3,34 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-unused-vars */
-import { useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Logo from '../assets/images/logo.png';
-import Solicon from '../assets/images/solicon.PNG';
-import UseAuth from '../Hooks/UseAuth';
+import CustomAuth from '../Hooks/CustomAuth';
 import Footer from '../shared/sharedcomponents/Footer';
 import Navbar from '../shared/sharedcomponents/Navbar';
 
 function Login() {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [myUser, setMyuser] = useState({});
-    const url = `http://54.75.119.70:8080/`;
+    const navigate = useNavigate();
 
-    const history = useNavigate();
-    const location = useLocation();
-    const googleRedirect = location?.state?.from || '/dashboard';
-    const emailRedirect = location?.state?.from || '/dashboard';
-    const { signinGoogle, signInWithEmail, setUser, getEmail, getPassword, setIsLoading, user } =
-        UseAuth();
+    const {
+        username,
+        setUsername,
+        password,
+        setPassword,
+        user,
+        setUser,
+        getUername,
+        getPass,
+        HandleCustomLogin,
+    } = CustomAuth();
 
-    const getUername = (e) => {
-        setUsername(e?.target?.value);
-    };
-    const getPass = (e) => {
-        setPassword(e?.target?.value);
-    };
-
-    // const emaillogin = (e) => {
-    //     e.preventDefault();
-    //     signInWithEmail()
-    //         .then((result) => {
-    //             setUser(result.user);
-    //             Swal.fire('Good job!', 'email Log In SuccessFull!', 'success');
-    //             return history(emailRedirect);
-    //         })
-    //         .catch((error) => {
-    //             Swal.fire('Something went wrong!', `${error.message}`, 'error');
-    //         })
-    //         .finally(() => setIsLoading(false));
-    // };
-
-    // const handlegoolesign = () => {
-    //     signinGoogle()
-    //         .then((result) => {
-    //             Swal.fire('Good job!', 'Log In SuccessFull!', 'success');
-    //             return history(googleRedirect);
-    //         })
-    //         .finally(() => setIsLoading(false))
-    //         .catch((error) => {
-    //             Swal.fire('Something went wrong!', `${error.message}`, 'error');
-    //         })
-    //         .finally(() => setIsLoading(false));
-    // };
-    // useEffect(() => {
-    //     if (user?.email) {
-    //         history('/');
-    //     } else {
-    //         <Navigate to="/login" />;
-    //     }
-    // }, [user?.email]);
-
-    const HandleCustomLogin = (e) => {
-        e.preventDefault();
-
-        Swal.fire(`Username is ${username} and password is ${password}`);
-
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-            },
-            body: JSON.stringify({ username, password }),
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                setMyuser(data);
-                setTimeout(() => {
-                    Swal.fire(myUser);
-                }, 1500);
-            })
-            .catch((err) =>
-                setTimeout(() => {
-                    Swal.fire(err.message);
-                }, 1500)
-            );
-    };
+    useEffect(() => {
+        if (user?.user_id) {
+            console.log('got user');
+            navigate('/dashboard');
+        }
+    }, [user]);
 
     return (
         <div>
@@ -103,31 +43,16 @@ function Login() {
                             <h2 className="mt-4 lg:mt-6 text-center text-2xl lg:text-3xl font-extrabold text-gray-900">
                                 Sign in to your account
                             </h2>
-                            <p className="text-center text-semi-bold text-red-700">
-                                <small>
-                                    Currently,we dont support getting registered from here and login
-                                    with google or solana too. Please login with username and
-                                    password we provided you.If you still havent one, please contact
-                                    us on{' '}
-                                    <a
-                                        href="https://discord.com/channels/917840365241913455/940569848805728307"
-                                        className="text-indigo-600 text-bolder"
-                                        target="_blank"
-                                        rel="noreferrer"
-                                    >
-                                        Discord
-                                    </a>
-                                </small>
-                            </p>
                             <p className="mt-2 text-center text-sm text-gray-600">
-                                Dont have any account?
-                                <Link
-                                    to="/register"
-                                    className="font-medium text-indigo-600 hover:text-indigo-500"
+                                Dont have any bot?
+                                <a
+                                    href="https://discord.com/channels/917840365241913455/940569848805728307"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="text-indigo-700 hover:text-indigo-500 ml-1 focus:outline-none transition duration-150 ease-in-out"
                                 >
-                                    {' '}
-                                    Register Here{' '}
-                                </Link>
+                                    contact us
+                                </a>
                             </p>
                         </div>
                         <form className="mt-8 space-y-6" onSubmit={HandleCustomLogin}>
@@ -204,46 +129,6 @@ function Login() {
                                 </button>
                             </div>
                         </form>
-                        <div className="anothermethod flex items-center justify-center lg:justify-between my-4 px-6">
-                            <span className="w-1/3 hidden lg:block h-0.5 bg-[#eee8e8] " />
-                            <span className="lg:w-1/3 w-full  text-center">or signin using</span>
-                            <span className="w-1/3 hidden lg:block h-0.5 bg-[#eee8e8] " />
-                        </div>
-                        <div className="signinbutton flex items-center justify-around flex-col lg:flex-row">
-                            <button
-                                type="button"
-                                className="flex justify-center items-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none mb-3 lg:mb-0"
-                                // onClick={handlegoolesign}
-                            >
-                                <svg
-                                    className="w-4 h-4 mr-2 -ml-1"
-                                    aria-hidden="true"
-                                    focusable="false"
-                                    data-prefix="fab"
-                                    data-icon="google"
-                                    role="img"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 488 512"
-                                >
-                                    <path
-                                        fill="currentColor"
-                                        d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"
-                                    />
-                                </svg>
-                                Sign in with Google
-                            </button>
-                            <button
-                                type="button"
-                                className="flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none"
-                            >
-                                <img
-                                    src={Solicon}
-                                    alt="solicon"
-                                    className="h-5 mr-2 w-auto block items-center"
-                                />
-                                Sign in with Solana
-                            </button>
-                        </div>
                     </div>
                 </div>
             </div>

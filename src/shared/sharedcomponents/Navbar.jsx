@@ -17,7 +17,7 @@ function Navbar() {
     };
 
     const { user, logOut, setUser, setIsLoading } = UseAuth();
-    const { displayName, photoURL } = user;
+    // const { displayName, photoURL } = user;
     const history = useNavigate();
     const location = useLocation();
     const googleRedirect = location?.state?.from || '/';
@@ -76,10 +76,12 @@ function Navbar() {
                                 {dropdownshow && (
                                     <div className=" bg-darkishBlack text-white mt-16 -ml-32 py-2 px-1 rounded-sm absolute z-[99]">
                                         <div className="py-3 px-4 text-sm text-white ">
-                                            <div>{user?.displayName}</div>
-                                            <div className="font-medium truncate">
+                                            {/* <div>{user?.displayName}</div> */}
+                                            <div>hello</div>
+                                            {/* <div className="font-medium truncate">
                                                 {user?.email}
-                                            </div>
+                                            </div> */}
+                                            <div className="font-medium truncate">world</div>
                                         </div>
                                         <hr className="opacity-5" />
                                         <ul className=" text-white">
