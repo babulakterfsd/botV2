@@ -1,23 +1,32 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import MainTab from '../components/dashboard/MainTab/MainTab';
 import UseAuth from '../Hooks/UseAuth';
 import styles from '../styles/Dashboard.module.css';
 
 function Dashboard() {
-    const { user, logOut } = UseAuth();
-
-    console.log(UseAuth());
-
+    const { user, logOut, setUser, setIsLoading } = UseAuth();
     const [dropdownshow, setDropdownshow] = useState(false);
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const handleLogout = () => {
-        logOut();
+        logOut()
+            .then(() => {
+                setUser({});
+                Swal.fire('Good job!', 'Log Out SuccessFull!', 'success');
+                return navigate('/');
+            })
+            .catch((error) => {
+                Swal.fire('Something went wrong!', `${error.message}`, 'error');
+            })
+            .finally(() => {
+                setIsLoading(false);
+                setDropdownshow(false);
+                console.log(dropdownshow);
+            });
     };
-
-    console.log(user);
 
     return (
         <div className={`${styles.dashboard} pb-8`}>
